@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mã hóa - Elgamal</title>
+
+  <link rel="stylesheet" type="text/css" href="./style.css">
+</head>
+
+<body>
+  <div class="container">
+    <div class="header">
+      <h2>Thực hiện mã hóa - Elgamal</h2>
+    </div>
+    <div class="wrap-content">
+      <div class="content create-key-wrap">
+        <div>
+          <div class="content-header">
+            <p>Tạo khóa</p>
+          </div>
+
+          <div>
+            <div class="public-key key">
+              <table>
+                <tr class="public-key-height">
+                  <th colspan="2">
+                    <h3>Khóa công khai (p,α,β)</h3>
+                  </th>
+                </tr>
+                <tr class="public-key-height">
+                  <td class="public-key-left"><label for="songuyento">Số nguyên tố: p = </label></td>
+                  <td class="public-key-right"><input type="text" id="p" /></td>
+                </tr>
+                <tr class="public-key-height">
+                  <td class="public-key-left"><label for="alpha">Số(alpha) α = </label></td>
+                  <td class="public-key-right"><input type="text" id="alpha" /></td>
+                </tr>
+                <tr class="public-key-height">
+                  <td class="public-key-left"><label for="sod">Số β = a^α mod p = </label></td>
+                  <td class="public-key-right"><input type="text" id="beta" /></td>
+                </tr>
+
+              </table>
+            </div>
+            <div class="secret-key key">
+              <table>
+                <tr class="public-key-height">
+                  <th colspan="2">
+                    <h3>Khóa bí mật (x)</h3>
+                  </th>
+                </tr>
+                <tr class="public-key-height">
+                  <td class="public-key-left"><label for="songuyen">K private a = </label></td>
+                  <td class="public-key-right"><input type="text" id="kprivate" name="songuyen" /></td>
+                </tr>
+
+              </table>
+            </div>
+            <div class="create-key-btn">
+              <button 
+                type="submit" 
+                name="btnRandom" 
+                onclick="generateFunction()"
+              >
+                Tạo khóa ngẫu nhiên
+              </button>
+            </div>
+
+            <div class="create-key-btn">
+              <button 
+                name="btnRandom" 
+                onclick="autoRun()"
+              >
+                autorun
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="content signing">
+        <div class="content-header">
+          <p>Thực hiện xử lý</p>
+        </div>
+        <div class="sign-wrap">
+          <div>
+            <div class="check-sign space-between sign-content">
+              <div class="check-sign-content">
+                <div><label for="songaunhien"><b>Số ngẫu nhiên k = </b></label></div>
+                <div><input type="text" id="k" /></div>
+              </div>
+
+              <div class="check-sign-content">
+                <button onclick="clearData()">Chọn lại</button>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="sign-content">
+              <div class="sign-content-title">
+                <b>Bản rõ: </b>
+              </div>
+              <div>
+                <textarea rows="5" cols="90" id="txtBanRo"></textarea>
+              </div>
+            </div>
+            <button onclick="encryptFunction()">Mã hóa</button>
+            <div class="sign-content">
+              <div class="sign-content-title">
+                <b>Bản rõ được mã hóa: </b>
+              </div>
+              <div>
+                <textarea rows="5" cols="90" id="txt_maHoaBanRo"></textarea>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div class="sign-content">
+              <div class="sign-content-title">
+                <b>Bản rõ nhận được: </b>
+              </div>
+              <div>
+                <textarea rows="5" cols="90" id="txt_banMaHoaNhanDuoc"></textarea>
+              </div>
+            </div>
+            <button onclick="decrptFunction()">Giải mã</button>
+            <div class="sign-content">
+              <div class="sign-content-title">
+                <b>Bản mã được giải mã :</b>
+              </div>
+              <div>
+                <textarea rows="5" cols="90" id="txt_banGiaima"></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="./index.js"></script>
+
+</body>
+
+</html>
