@@ -248,6 +248,10 @@ function decrptFunction () {
       const random = Math.floor(Math.random() * 4);
       document.getElementById("txt_banGiaima").value = array[random] + decrptMessage.slice(0, decrptMessage.length / 2);
     }
+    var decrptMessage = document.getElementById("txtBanRo").value
+    const array = ['ashdkashdg', 'sacnsc,m', 'hasdghsdg', 'lsldghadg']
+    const random = Math.floor(Math.random() * 4);
+    document.getElementById("txt_banGiaima").value = array[random] + decrptMessage.slice(0, decrptMessage.length / 2);
   }
   
 }
