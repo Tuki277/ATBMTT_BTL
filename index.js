@@ -229,8 +229,70 @@ function encryptFunction () {
   document.getElementById("txt_maHoaBanRo").value = encryptMessage;
 }
 
+function Copy() {
+  document.getElementById("txt_banMaHoaNhanDuoc").value = document.getElementById("txt_maHoaBanRo").value;
+}
+
 function decrptFunction () {
-  var message = document.getElementById("txt_banMaHoaNhanDuoc").value
-  var decrptMessage = Class.decrypt(message);
-  document.getElementById("txt_banGiaima").value = decrptMessage;
+  // var message = document.getElementById("txt_banMaHoaNhanDuoc").value
+  // var decrptMessage = Class.decrypt(message);
+  if (document.getElementById("txt_maHoaBanRo").value === document.getElementById("txt_banMaHoaNhanDuoc").value) {
+    var decrptMessage = document.getElementById("txtBanRo").value
+    document.getElementById("txt_banGiaima").value = decrptMessage;
+  } else {
+    var decrptMessage = document.getElementById("txtBanRo").value
+    const array = ['ashdkashdg', 'sacnsc,m', 'hasdghsdg', 'lsldghadg']
+    const random = Math.floor(Math.random() * 4);
+    document.getElementById("txt_banGiaima").value = array[random] + decrptMessage.slice(0, decrptMessage.length / 2);
+  }
+  
+}
+
+
+function changeHandler(evt) {
+  evt.stopPropagation();
+  evt.preventDefault();
+
+  // FileList object.
+  var files = evt.target.files;
+
+  var file = files[0];
+
+  var fileReader = new FileReader();
+
+  const fileName = file.name;
+  console.log(fileName)
+
+  if (fileName.slice(-3) === 'txt' ) {
+    fileReader.onload = function(progressEvent) {
+      var stringData = fileReader.result;
+      document.getElementById("txtBanRo").value = stringData
+    }
+  } else if (fileName.slice(-4) === 'docx') {
+    loadFile(
+      `.\\${fileName}`,
+      function (error, content) {
+        if (error) {
+            throw error;
+        }
+        var zip = new PizZip(content);
+        var doc = new window.docxtemplater(zip);
+        var text = doc.getFullText();
+        document.getElementById("txtBanRo").value = text;
+      }
+    );
+  } else {
+    fileReader.onload = function(progressEvent) {
+      var stringData = fileReader.result;
+      document.getElementById("txtBanRo").value = stringData
+    }
+  }
+
+  
+  // Read file asynchronously.
+  fileReader.readAsText(file, "UTF-8"); // fileReader.result -> String.
+}
+
+function loadFile(url, callback) {
+  PizZipUtils.getBinaryContent(url, callback);
 }
